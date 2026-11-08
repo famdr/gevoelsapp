@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="nl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#FFFBFD">
+<title>Gevoelsapp</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#FFFBFD;color:#4A4458;font:16px/1.3 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-tap-highlight-color:transparent}
+.w{max-width:620px;margin:0 auto;padding:18px 18px 40px}
+.hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+h1{font-size:22px;font-weight:500;margin:0;user-select:none}
+button{font:inherit;color:inherit;cursor:pointer}
+.nv{border:1.5px solid #D9D2E0;background:#fff;border-radius:14px;padding:10px 16px;font-size:15px}
+.l{font-size:13px;color:#7A7288;margin:0 0 6px}
+.row{display:flex;gap:6px;margin-bottom:14px}
+.dy{flex:1;height:54px;border-radius:14px;display:flex;align-items:center;justify-content:center;cursor:pointer;user-select:none}
+.mm{flex:1;height:84px;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-weight:500;cursor:pointer;user-select:none}
+.mm i{font-style:normal;display:flex}.cn{display:flex;align-items:center;gap:8px}.kl{display:flex;align-items:center;justify-content:center;gap:10px}.kl svg{display:block}
+.fr{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+.ic{width:58px;height:58px;flex:none;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:30px}
+.pb{touch-action:none;position:relative;height:44px;margin:0 17px;cursor:pointer}
+.tr{position:absolute;left:0;right:0;top:16px;height:12px;border-radius:6px}
+.fl{position:absolute;left:0;top:0;bottom:0;border-radius:6px}
+.th{position:absolute;top:22px;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:500}
+.tk{position:relative;height:16px;margin:-2px 17px 0;font-size:12px;color:#7A7288}
+.tk span{position:absolute;transform:translateX(-50%)}
+.sec{border-top:.5px solid #E6DFEC;margin-top:18px;padding-top:16px}
+#dn{width:110px;height:58px;border-radius:14px;border:1.5px solid #B9AEDF;background:#fff;color:inherit;font:500 30px system-ui;text-align:center}
+.ct{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cb{border:.5px solid #D9D2E0;border-radius:16px;padding:10px 12px;background:#fff}
+.cb div:first-child{margin-bottom:8px;font-size:15px}
+.yn{display:flex;gap:8px}
+.yn b{flex:1;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:500;background:#fff;border:1px solid #E6DFEC;cursor:pointer;user-select:none}
+textarea,input[type=text],input[type=password]{width:100%;border-radius:14px;border:.5px solid #D9D2E0;background:#fff;color:inherit;padding:12px 14px;font:15px system-ui;resize:none}
+.pz{height:84px;border-radius:16px;background:#F9CFE0;border:1.5px solid #E9A5C2;color:#6B2342;display:flex;align-items:center;justify-content:center;gap:14px;font-size:18px;font-weight:500;width:100%;margin-top:22px}
+.pz img{width:64px;height:64px;border-radius:50%;border:2px solid #E9A5C2;object-fit:cover}
+.kl{height:76px;border-radius:999px;background:#CDEBD3;border:1.5px solid #8FCB9B;color:#1F5A33;font-size:24px;font-weight:500;width:100%;margin-top:12px}
+.pz:active,.kl:active{transform:scale(.98)}
+.ch{margin-bottom:12px}
+.ch p{margin:0 0 2px;font-size:14px}
+.rg{display:flex;gap:8px;margin-bottom:14px}
+.rg b{flex:1;text-align:center;padding:12px;border-radius:12px;border:1.5px solid #E6DFEC;background:#fff;cursor:pointer;user-select:none}
+.br{display:flex;align-items:center;gap:8px;font-size:13px;margin:4px 0}
+.br span:first-child{width:64px}
+.br i{display:block;height:12px;border-radius:6px;background:#E3DDF5;min-width:2px}
+#pn{position:fixed;inset:0;background:rgba(74,68,88,.35);display:flex;align-items:flex-end;justify-content:center;z-index:9}
+#pq,#kq{position:fixed;inset:0;background:rgba(74,68,88,.3);display:flex;padding:18px;z-index:9}
+#pn[hidden],[hidden]{display:none!important}
+.pc{background:#FFFBFD;border-radius:24px 24px 0 0;padding:20px;width:100%;max-width:620px;max-height:90vh;overflow:auto}
+.pc button{border:1.5px solid #D9D2E0;background:#fff;border-radius:12px;padding:10px 14px;margin:4px 4px 4px 0}
+.pc label{display:block;font-size:13px;color:#7A7288;margin:12px 0 4px}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#4A4458;color:#fff;padding:12px 20px;border-radius:999px;font-size:15px;z-index:10}
+</style></head>
+<body><svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="rb" gradientUnits="userSpaceOnUse" x1="3" y1="0" x2="21" y2="0"><stop offset="0" stop-color="#EE8F8F"/><stop offset=".25" stop-color="#F2B56E"/><stop offset=".5" stop-color="#D9C94F"/><stop offset=".75" stop-color="#7FC48F"/><stop offset="1" stop-color="#8E9BE0"/></linearGradient></defs></svg><div class="w">
+<div class="hd"><h1 id="ttl">Hoe was je dag?</h1><button class="nv" id="nav">Overzicht</button></div>
+
+<main id="v1">
+<p class="l">Welke dag is het?</p><div class="row" id="days"></div>
+<p class="l">Wanneer vul je dit in?</p><div class="row" id="moms"></div>
+<div class="sec" id="sl" style="margin-top:6px"></div>
+<div class="sec fr"><div class="ic" style="background:#EFE9F7;border:.5px solid #B9AEDF"><span id="i123"></span></div><div style="flex:1">Cijfer voor je dag</div><input id="dn" type="text" inputmode="numeric" maxlength="4" placeholder="–" aria-label="Cijfer voor je dag"></div>
+<p class="l" style="margin-top:18px">Vandaag</p><div class="ct" id="ctx"></div>
+<p class="l" style="margin-top:18px">Notitie (voor ouders, mag leeg)</p><textarea id="nt" rows="3"></textarea>
+<button class="pz" id="pz"><img alt="" src="data:image/jpeg;base64,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"><span id="pzt">Poppiepauze</span></button>
+<button class="kl" id="kl">Klaar<span id="ick"></span></button>
+</main>
+
+<main id="v2" hidden>
+<div class="rg" id="rg"></div>
+<div id="cs"></div>
+</main>
+</div>
+
+<div id="pq" hidden><div class="pc" style="border-radius:24px;margin:auto;max-width:460px;text-align:center;padding:28px 22px"><img id="pqi" alt="" style="width:96px;height:96px;border-radius:50%;border:2px solid #E9A5C2;object-fit:cover"><p style="font-size:22px;margin:16px 0 22px">Heb je een poppiepauze nodig?</p><div style="display:flex;gap:12px"><button id="pja" style="flex:1;height:72px;border-radius:18px;background:#F9CFE0;border:1.5px solid #E9A5C2;color:#6B2342;font-size:22px;font-weight:500;margin:0">Ja</button><button id="pnee" style="flex:1;height:72px;border-radius:18px;background:#F7CBC6;border:1.5px solid #DB8780;color:#6B2A26;font-size:22px;font-weight:500;margin:0">Nee</button></div></div></div>
+<div id="kq" hidden><div class="pc" style="border-radius:24px;margin:auto;max-width:460px;text-align:center;padding:28px 22px"><p style="font-size:22px;margin:4px 0 22px">Ben je echt klaar?</p><div style="display:flex;gap:12px"><button id="kqja" style="flex:1;height:72px;border-radius:18px;background:#CDEBD3;border:1.5px solid #8FCB9B;color:#1F5A33;font-size:22px;font-weight:500;margin:0">Ja</button><button id="kqnee" style="flex:1;height:72px;border-radius:18px;background:#F7CBC6;border:1.5px solid #DB8780;color:#6B2A26;font-size:22px;font-weight:500;margin:0">Nee</button></div></div></div>
+<div id="pn" hidden><div class="pc">
+<b>Voor ouders</b> <span style="font-size:12px;color:#7A7288">v2-01</span>
+<label>Link van het script (Apps Script web-app)</label><input type="text" id="cu" autocomplete="off">
+<label>Geheime code</label><input type="password" id="ck" autocomplete="off">
+<div><button id="sv">Opslaan en synchroniseren</button></div>
+<p id="ss" style="font-size:14px;margin:8px 0">–</p>
+<div><button id="ej">Export JSON</button><button id="ec">Export CSV</button><button id="im">Import JSON</button></div>
+<input type="file" id="fi" accept=".json,application/json" hidden>
+<div><button id="sl2" style="margin-top:14px">Sluiten</button></div>
+</div></div>
+
+<script>
+var K="gevoelsapp-v2",D=ld();
+function ld(){try{var d=JSON.parse(localStorage.getItem(K));if(d&&d.e)return d}catch(x){}return{e:{},p:[],c:{}}}
+function sv(){try{localStorage.setItem(K,JSON.stringify(D))}catch(x){}}
+if(!D.c.dev){D.c.dev="d-"+Math.random().toString(36).slice(2,8);sv()}
+var $=function(s){return document.querySelector(s)};
+var HEAD=["entry_id","datum","device_id","ingevuld_op","gewijzigd_op","bron","versie","weekdag","moment","blij","liefde","rustig","verdrietig","boos","bang","moe","druk_hoofd","van_alles","dagcijfer","school","bso","vriendinnen","speelafspraak","zwemles","dansles","notitie"];
+var FE=[["blij","Blij","smile|#4A4458","#FFF0B8","#E8C94F"],["liefde","Liefde","heart|#4A4458","#FAD4E4","#E78FB3"],["rustig","Rustig","leaf|#4A4458","#D6EBE1","#82C3A6"],["verdrietig","Verdrietig","cry|#3A5F8F","#D2E4F8","#7FA8DB"],["boos","Boos","angry|#4A4458","#FAD9D0","#E8A08C"],["bang","Bang","ghost|#4A4458","#E3DDF5","#B1A3DE"],["moe","Moe","moon|#4A4458","#FFFFFF","#C9C3D6"],["druk_hoofd","Druk hoofd","tornado|#8A8892","#ECEBEE","#A09FA8"],["van_alles","Van alles wat","rainbow|rb","#FFF7EC","#E9B97A"]];
+var DAYS=[["Ma","#CFE3F9","#7FA8DB"],["Di","#FFEFAE","#E3C443"],["Wo","#CDEBD3","#82C391"],["Do","#FFDDB8","#EBA565"],["Vr","#E0D2F4","#A98BD6"],["Za","#F9D0E1","#E58BB0"],["Zo","#F7CBC6","#DB8780"]];
+var MO=[["ochtend","Ochtend","sunrise|#4A4458","#FFE9C9","#E8C28A"],["middag","Middag","sun|#4A4458","#FFF3B8","#E3C443"],["avond","Avond","moonstars|#4A4458","#D2E4F8","#7FA8DB"]];
+var CX=[["school","School","school|#4A4458"],["bso","BSO","home|#4A4458"],["vriendinnen","Vriendinnen","users|#4A4458"],["speelafspraak","Speelafspraak","cal|#4A4458"],["zwemles","Zwemles","swim|#4A4458"],["dansles","Dansles","music|#4A4458"]];
+var ICONS={"smile": "<path d=\"M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0\"></path><path d=\"M9 10l.01 0\"></path><path d=\"M15 10l.01 0\"></path><path d=\"M9.5 15a3.5 3.5 0 0 0 5 0\"></path>", "heart": "<path d=\"M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572\"></path>", "leaf": "<path d=\"M5 21c.5 -4.5 2.5 -8 7 -10\"></path><path d=\"M9 18c6.218 0 10.5 -3.288 11 -12v-2h-4.014c-9 0 -11.986 4 -12 9c0 1 0 3 2 5h3z\"></path>", "cry": "<path d=\"M9 10l.01 0\"></path><path d=\"M15 10l.01 0\"></path><path d=\"M9.5 15.25a3.5 3.5 0 0 1 5 0\"></path><path d=\"M17.566 17.606a2 2 0 1 0 2.897 .03l-1.463 -1.636l-1.434 1.606z\"></path><path d=\"M20.865 13.517a8.937 8.937 0 0 0 .135 -1.517a9 9 0 1 0 -9 9c.69 0 1.36 -.076 2 -.222\"></path>", "angry": "<path d=\"M12 21a9 9 0 1 1 0 -18a9 9 0 0 1 0 18z\"></path><path d=\"M8 9l2 1\"></path><path d=\"M16 9l-2 1\"></path><path d=\"M14.5 16.05a3.5 3.5 0 0 0 -5 0\"></path>", "ghost": "<path d=\"M5 11a7 7 0 0 1 14 0v7a1.78 1.78 0 0 1 -3.1 1.4a1.65 1.65 0 0 0 -2.6 0a1.65 1.65 0 0 1 -2.6 0a1.65 1.65 0 0 0 -2.6 0a1.78 1.78 0 0 1 -3.1 -1.4v-7\"></path><path d=\"M10 10l.01 0\"></path><path d=\"M14 10l.01 0\"></path><path d=\"M10 14a3.5 3.5 0 0 0 4 0\"></path>", "moon": "<path d=\"M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z\"></path>", "tornado": "<path d=\"M21 4l-18 0\"></path><path d=\"M13 16l-6 0\"></path><path d=\"M11 20l4 0\"></path><path d=\"M6 8l14 0\"></path><path d=\"M4 12l12 0\"></path>", "rainbow": "<path d=\"M22 17c0 -5.523 -4.477 -10 -10 -10s-10 4.477 -10 10\"></path><path d=\"M18 17a6 6 0 1 0 -12 0\"></path><path d=\"M14 17a2 2 0 1 0 -4 0\"></path>", "school": "<path d=\"M22 9l-10 -4l-10 4l10 4l10 -4v6\"></path><path d=\"M6 10.6v5.4a6 3 0 0 0 12 0v-5.4\"></path>", "home": "<path d=\"M21 12l-9 -9l-9 9h2v7a2 2 0 0 0 2 2h6\"></path><path d=\"M9 21v-6a2 2 0 0 1 2 -2h2c.39 0 .754 .112 1.061 .304\"></path><path d=\"M19 21.5l2.518 -2.58a1.74 1.74 0 0 0 0 -2.413a1.627 1.627 0 0 0 -2.346 0l-.168 .172l-.168 -.172a1.627 1.627 0 0 0 -2.346 0a1.74 1.74 0 0 0 0 2.412l2.51 2.59z\"></path>", "users": "<path d=\"M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0\"></path><path d=\"M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2\"></path><path d=\"M16 3.13a4 4 0 0 1 0 7.75\"></path><path d=\"M21 21v-2a4 4 0 0 0 -3 -3.85\"></path>", "cal": "<path d=\"M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z\"></path><path d=\"M16 3l0 4\"></path><path d=\"M8 3l0 4\"></path><path d=\"M4 11l16 0\"></path><path d=\"M8 15h2v2h-2z\"></path>", "swim": "<path d=\"M16 9m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0\"></path><path d=\"M6 11l4 -2l3.5 3l-1.5 2\"></path><path d=\"M3 16.75a2.4 2.4 0 0 0 1 .25a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 1 -.25\"></path>", "music": "<path d=\"M3 17a3 3 0 1 0 6 0a3 3 0 0 0 -6 0\"></path><path d=\"M13 17a3 3 0 1 0 6 0a3 3 0 0 0 -6 0\"></path><path d=\"M9 17v-13h10v13\"></path><path d=\"M9 8h10\"></path>", "sunrise": "<path d=\"M3 17h1m16 0h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7m-9.7 5.7a4 4 0 0 1 8 0\"></path><path d=\"M3 21l18 0\"></path><path d=\"M12 9v-6l3 3m-6 0l3 -3\"></path>", "sun": "<path d=\"M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0\"></path><path d=\"M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7\"></path>", "moonstars": "<path d=\"M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z\"></path><path d=\"M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2\"></path><path d=\"M19 11h2m-1 -1v2\"></path>", "n123": "<path d=\"M8 10v-7l-2 2\"></path><path d=\"M6 16a2 2 0 1 1 4 0c0 .591 -.601 1.46 -1 2l-3 3h4\"></path><path d=\"M15 14a2 2 0 1 0 2 -2a2 2 0 1 0 -2 -2\"></path><path d=\"M6.5 10h3\"></path>", "check": "<path d=\"M5 12l5 5l10 -10\"></path>"};
+function ic(k,s,c){return'<svg viewBox="0 0 24 24" width="'+s+'" height="'+s+'" fill="none" stroke="'+(c==="rb"?"url(#rb)":c)+'" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+ICONS[k]+"</svg>"}
+var S,R="week";
+function I(x,s){var a=x.split("|");return ic(a[0],s,a[1])}
+function pad(n){return(n<10?"0":"")+n}
+function ymd(d){return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())}
+function iso(d){return ymd(d)+"T"+pad(d.getHours())+":"+pad(d.getMinutes())+":"+pad(d.getSeconds())}
+function pd(s){var a=s.split("-");return new Date(+a[0],+a[1]-1,+a[2])}
+function addd(s,n){var d=pd(s);d.setDate(d.getDate()+n);return ymd(d)}
+function wd(d){return(d.getDay()+6)%7}
+function toast(t){var e=document.createElement("div");e.id="toast";e.textContent=t;document.body.appendChild(e);setTimeout(function(){e.remove()},2200)}
+
+function fresh(){S={v:FE.map(function(){return null}),dag:null,mom:null,x:{}};$("#dn").value="";$("#nt").value="";FE.forEach(function(f,i){pt(i)});rd();rm();rc()}
+function rd(){$("#days").innerHTML=DAYS.map(function(x,i){var on=S.dag===i;return'<b class="dy" data-d="'+i+'" style="font-weight:'+(on?500:400)+';background:'+(on?x[1]:"#fff")+';border:'+(on?"2px solid "+x[2]:"1.5px solid #E6DFEC")+'">'+x[0]+"</b>"}).join("")}
+function rm(){$("#moms").innerHTML=MO.map(function(x,i){var on=S.mom===x[0];return'<div class="mm" data-m="'+x[0]+'" style="background:'+(on?x[3]:"#fff")+';border:'+(on?"1.5px solid "+x[4]:"1px solid #E6DFEC")+'"><i>'+I(x[2],30)+"</i>"+x[1]+"</div>"}).join("")}
+function rc(){$("#ctx").innerHTML=CX.map(function(c){var v=S.x[c[0]];return'<div class="cb"><div class="cn">'+I(c[2],22)+c[1]+'</div><div class="yn"><b data-c="'+c[0]+'" data-v="1" style="'+(v===1?"background:#D6EBE1;border-color:#82C3A6":"")+'">ja</b><b data-c="'+c[0]+'" data-v="0" style="'+(v===0?"background:#F7CBC6;border-color:#DB8780;color:#6B2A26":"")+'">nee</b></div></div>'}).join("")}
+$("#days").onclick=function(e){var t=e.target.closest("[data-d]");if(!t)return;var i=+t.dataset.d;S.dag=S.dag===i?null:i;rd()};
+$("#moms").onclick=function(e){var t=e.target.closest("[data-m]");if(!t)return;S.mom=S.mom===t.dataset.m?null:t.dataset.m;rm()};
+$("#ctx").onclick=function(e){var t=e.target.closest("[data-c]");if(!t)return;var c=t.dataset.c,v=+t.dataset.v;S.x[c]=S.x[c]===v?null:v;rc()};
+
+$("#sl").innerHTML=FE.map(function(f,i){var bd=f[3]==="#FFFFFF"?"1px solid #D9D2E0":".5px solid "+f[4];return'<div class="fr"><div class="ic" style="background:'+f[3]+";border:"+bd+'">'+I(f[2],32)+'</div><div style="flex:1;min-width:0"><div class="l" style="margin:0">'+f[1]+'</div><div class="pb" data-i="'+i+'"><div class="tr" id="tr'+i+'"><div class="fl" id="fl'+i+'"></div></div><div class="th" id="th'+i+'"></div></div><div class="tk"><span style="left:0">0</span><span style="left:100%">10</span></div></div></div>'}).join("");
+function pt(i){var v=S.v[i],tr=$("#tr"+i),fl=$("#fl"+i),th=$("#th"+i);if(v===null){tr.style.border="1.5px dashed #B9B0C6";tr.style.background="transparent";fl.style.width="0";th.style.display="none"}else{tr.style.border="none";tr.style.background="#EAE4F0";fl.style.background=FE[i][4];fl.style.width=v*10+"%";th.style.display="flex";th.style.left=v*10+"%";th.style.border="3px solid "+FE[i][4];th.textContent=v}}
+Array.prototype.forEach.call(document.querySelectorAll(".pb"),function(el){var i=+el.dataset.i;function set(e){var r=el.getBoundingClientRect();S.v[i]=Math.max(0,Math.min(10,Math.round((e.clientX-r.left)/r.width*10)));pt(i)}
+el.addEventListener("pointerdown",function(e){el.setPointerCapture(e.pointerId);el.dr=1;set(e)});el.addEventListener("pointermove",function(e){if(el.dr)set(e)});el.addEventListener("pointerup",function(){el.dr=0});el.addEventListener("pointercancel",function(){el.dr=0})});
+$("#dn").oninput=function(){this.value=this.value.replace(/[^0-9]/g,"")};
+
+function dFor(){var n=new Date(),t=ymd(n);if(S.dag===null)return t;return addd(t,-((wd(n)-S.dag+7)%7))}
+function klaar(ok){
+ var any=S.v.some(function(v){return v!==null})||$("#dn").value!==""||Object.keys(S.x).some(function(k){return S.x[k]!==null&&S.x[k]!==undefined})||$("#nt").value.trim()!=="";
+ if(!any){toast("Er is nog niets ingevuld");return}
+ if(!ok){$("#kq").hidden=false;return}
+ var d=dFor(),n=iso(new Date()),old=D.e[d],e={entry_id:"e-"+d,datum:d,device_id:D.c.dev,ingevuld_op:old?old.ingevuld_op:n,gewijzigd_op:n,bron:"app",versie:2,weekdag:DAYS[wd(pd(d))][0],moment:S.mom||""};
+ FE.forEach(function(f,i){e[f[0]]=S.v[i]});e.dagcijfer=$("#dn").value===""?null:+$("#dn").value;
+ CX.forEach(function(c){e[c[0]]=S.x[c[0]]===undefined?null:S.x[c[0]]});e.notitie=$("#nt").value.trim();
+ D.e[d]=e;sv();fresh();toast("Gelukt");sync()}
+$("#kl").onclick=function(){klaar(false)};$("#kqja").onclick=function(){$("#kq").hidden=true;klaar(true)};$("#kqnee").onclick=function(){$("#kq").hidden=true};$("#kq").onclick=function(e){if(e.target===this)this.hidden=true};
+var pt0;$("#pz").onclick=function(){pt0=iso(new Date());$("#pqi").src=$("#pz img").src;$("#pq").hidden=false};
+$("#pnee").onclick=function(){$("#pq").hidden=true};
+$("#pq").onclick=function(e){if(e.target===this)this.hidden=true};
+$("#pja").onclick=function(){$("#pq").hidden=true;D.p.push({id:"p-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,6),ts:pt0,device:D.c.dev});sv();var t=$("#pzt");t.textContent="Poppie is er";setTimeout(function(){t.textContent="Poppiepauze"},2500);sync()};
+
+/* scherm 2 */
+$("#nav").onclick=function(){var a=$("#v1").hidden;$("#v1").hidden=!a;$("#v2").hidden=a;$("#nav").textContent=a?"Overzicht":"Terug";$("#ttl").textContent=a?"Hoe was je dag?":"Overzicht";if(!a)draw()};
+$("#rg").innerHTML=[["week","Week"],["maand","Maand"],["alles","Alles"]].map(function(x){return'<b data-r="'+x[0]+'">'+x[1]+"</b>"}).join("");
+$("#rg").onclick=function(e){var t=e.target.closest("[data-r]");if(t){R=t.dataset.r;draw()}};
+function span(a,b){var o=[];while(a<=b){o.push(a);a=addd(a,1)}return o}
+function chart(days,get,max,col){var W=560,H=96,L=26,Rr=8,T=8,B=18,w=W-L-Rr,h=H-T-B,n=days.length;
+ function X(i){return L+(n>1?i*w/(n-1):w/2)}function Y(v){return T+h-v/max*h}
+ var s='<svg viewBox="0 0 '+W+" "+H+'" width="100%" role="img">',p="",c="";
+ [0,max/2,max].forEach(function(g){s+='<line x1="'+L+'" x2="'+(W-Rr)+'" y1="'+Y(g)+'" y2="'+Y(g)+'" stroke="#EAE4F0"/><text x="2" y="'+(Y(g)+4)+'" font-size="11" fill="#7A7288">'+Math.round(g)+"</text>"});
+ var pen=0;days.forEach(function(d,i){var v=get(d);if(v===null||v===undefined){pen=0;return}p+=(pen?"L":"M")+X(i).toFixed(1)+" "+Y(v).toFixed(1)+" ";pen=1;c+='<circle cx="'+X(i).toFixed(1)+'" cy="'+Y(v).toFixed(1)+'" r="3.5" fill="'+col+'"/>'});
+ s+='<path d="'+p+'" fill="none" stroke="'+col+'" stroke-width="2.5" stroke-linejoin="round"/>'+c;
+ function lb(d){return d.slice(8)+"-"+d.slice(5,7)}
+ s+='<text x="'+L+'" y="'+(H-3)+'" font-size="11" fill="#7A7288">'+lb(days[0])+'</text><text x="'+(W-Rr)+'" y="'+(H-3)+'" font-size="11" text-anchor="end" fill="#7A7288">'+lb(days[n-1])+"</text></svg>";return s}
+function draw(){
+ Array.prototype.forEach.call(document.querySelectorAll("#rg b"),function(b){var on=b.dataset.r===R;b.style.background=on?"#E3DDF5":"#fff";b.style.borderColor=on?"#B1A3DE":"#E6DFEC"});
+ var t=ymd(new Date()),a;if(R==="week")a=addd(t,-6);else if(R==="maand")a=addd(t,-29);else{var all=Object.keys(D.e).concat(D.p.map(function(p){return p.ts.slice(0,10)})).sort();a=all.length?all[0]:t}
+ var days=span(a,t),h="";
+ FE.forEach(function(f){h+='<div class="ch"><p class="cn">'+I(f[2],20)+f[1]+"</p>"+chart(days,function(d){return D.e[d]?D.e[d][f[0]]:null},10,f[4])+"</div>"});
+ var mx=10;days.forEach(function(d){if(D.e[d]&&D.e[d].dagcijfer>mx)mx=D.e[d].dagcijfer});
+ h+='<div class="ch"><p class="cn">'+ic("n123",20,"#4A4458")+'Cijfer voor je dag</p>'+chart(days,function(d){return D.e[d]?D.e[d].dagcijfer:null},mx,"#B9AEDF")+"</div>";
+ var ps=D.p.filter(function(p){var d=p.ts.slice(0,10);return d>=a&&d<=t}),cnt={};ps.forEach(function(p){var d=p.ts.slice(0,10);cnt[d]=(cnt[d]||0)+1});
+ h+='<div class="ch"><p>Poppiepauzes: '+ps.length+"</p>"+chart(days,function(d){return cnt[d]||null},Math.max(2,Math.max.apply(null,days.map(function(d){return cnt[d]||0}))),"#E58BB0")+"</div>";
+ var wc=[0,0,0,0,0,0,0],dc=[0,0,0];ps.forEach(function(p){wc[wd(pd(p.ts.slice(0,10)))]++;var u=+p.ts.slice(11,13);dc[u<12?0:u<18?1:2]++});
+ function bars(l,c){var m=Math.max(1,Math.max.apply(null,c));return l.map(function(x,i){return'<div class="br"><span>'+x+'</span><i style="width:'+(c[i]/m*60)+'%"></i><span>'+c[i]+"</span></div>"}).join("")}
+ h+='<div class="sec"><p class="l">Wanneer in de dag</p>'+bars(["Ochtend","Middag","Avond"],dc)+'<p class="l" style="margin-top:14px">Welke weekdag</p>'+bars(DAYS.map(function(x){return x[0]}),wc)+"</div>";
+ $("#cs").innerHTML=h}
+
+/* ouderspaneel: lang indrukken op de titel */
+var lp;$("#ttl").onpointerdown=function(){lp=setTimeout(function(){$("#cu").value=D.c.url||"";$("#ck").value=D.c.tok||"";$("#pn").hidden=false},1500)};
+["pointerup","pointerleave","pointercancel"].forEach(function(ev){$("#ttl").addEventListener(ev,function(){clearTimeout(lp)})});
+$("#sl2").onclick=function(){$("#pn").hidden=true};
+function st(t){$("#ss").textContent=t}
+$("#sv").onclick=function(){D.c.url=$("#cu").value.trim();D.c.tok=$("#ck").value.trim();sv();sync()};
+function merge(es,ps){(es||[]).forEach(function(x){var o=D.e[x.datum];if(x.datum&&(!o||(o.gewijzigd_op||"")<(x.gewijzigd_op||"")))D.e[x.datum]=x});var ids={};D.p.forEach(function(p){ids[p.id]=1});(ps||[]).forEach(function(p){if(p.id&&!ids[p.id]){D.p.push(p);ids[p.id]=1}});sv()}
+function sync(){var c=D.c;if(!c.url||!c.tok){st("Nog niet ingesteld");return Promise.resolve()}st("Bezig…");
+ return fetch(c.url,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({token:c.tok,e:Object.keys(D.e).map(function(k){return D.e[k]}),p:D.p})}).then(function(r){return r.json()}).then(function(j){if(!j||!j.ok)throw 0;merge(j.e,j.p);var n=new Date();st("Gesynchroniseerd om "+pad(n.getHours())+":"+pad(n.getMinutes()));if(!$("#v2").hidden)draw()}).catch(function(){st("Synchroniseren lukt nu niet. De gegevens staan veilig op dit apparaat.")})}
+window.addEventListener("online",sync);
+function dl(n,t,m){var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([t],{type:m}));a.download=n;document.body.appendChild(a);a.click();a.remove()}
+$("#ej").onclick=function(){dl("gevoelsapp-"+ymd(new Date())+".json",JSON.stringify({e:Object.keys(D.e).map(function(k){return D.e[k]}),p:D.p}),"application/json")};
+$("#ec").onclick=function(){function q(v){v=v===null||v===undefined?"":String(v);if(/^[=+\-@]/.test(v))v="'"+v;return'"'+v.replace(/"/g,'""')+'"'}
+ var r=[HEAD.join(",")];Object.keys(D.e).sort().forEach(function(k){r.push(HEAD.map(function(h){return q(D.e[k][h])}).join(","))});
+ r.push("");r.push("id,ts,device_id");D.p.forEach(function(p){r.push([p.id,p.ts,p.device].map(q).join(","))});dl("gevoelsapp-"+ymd(new Date())+".csv",r.join("\n"),"text/csv")};
+$("#im").onclick=function(){$("#fi").click()};
+$("#fi").onchange=function(){var f=this.files[0];if(!f)return;var r=new FileReader();r.onload=function(){try{var j=JSON.parse(r.result);merge(j.e,j.p);st("Import gelukt");if(!$("#v2").hidden)draw()}catch(x){st("Dit bestand kan niet gelezen worden.")}};r.readAsText(f);this.value=""};
+$("#i123").innerHTML=ic("n123",34,"#4A4458");$("#ick").innerHTML=ic("check",30,"#1F5A33");
+fresh();sync();
+</script></body></html>
